@@ -1,19 +1,18 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Posts extends Model
+class Tags extends Model
 {
     public $timestamps = false;
-    /**
+	/**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'title', 'author', 'content'
+        'tag', 'post_id'
     ];
 
     /**
@@ -21,10 +20,6 @@ class Posts extends Model
      *
      * @var array
      */
-    protected $hidden = [];
-
-    public function tags()
-    {
-        return $this->hasMany('App\Models\Tags', 'post_id');
-    }
+    protected $hidden = ['id', 'post_id'];
+    
 }

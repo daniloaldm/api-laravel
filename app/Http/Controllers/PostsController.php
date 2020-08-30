@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Posts;
+use App\Models\Tags;
+use App\Http\Controllers;
 
 class PostsController extends Controller
 {
     public function show()
     {
-    	$posts = Posts::all();
+        $posts = Posts::with('tags')->get();
     	return response()->json($posts, 200);
     }
 
@@ -19,24 +21,23 @@ class PostsController extends Controller
     	$author = $request->input('author');
     	$content = $request->input('content');
     	$tags = $request->input('tags');
-        
+
     	$data = array(
             'title' => $title,
             'author' => $author,
-            'content' => $content,
-            'tags' => $tags
-    	);
+            'content' => $content
+        );
 
     	$posts = Posts::create($data);
 
     	if ($posts) {
+            app('App\Http\Controllers\TagsController')->registerTag($posts->id, $tags);
     		return response()->json([
-                'data' => [
-                    'type' => 'posts',
-                    'message' => 'Success',
-                    'id' => $posts->id,
-                    'attributes' => $posts
-                ]
+                'title' => $posts->title,
+                'author' => $posts->author,
+                'content' => $posts->content,
+                'tags' => $posts->tags,
+                'id' => $posts->id
             ], 201);
     	} else {
     		return response()->json([
