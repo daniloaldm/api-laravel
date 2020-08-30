@@ -11,7 +11,10 @@ class PostsController extends Controller
 {
     public function show()
     {
-        $posts = Posts::with('tags')->get();
+        $posts = Posts::all()->map(function ($theme) {
+            $theme['tag'] = $theme->tags()->get()->pluck('tag')->all();
+            return $theme;
+         })->all();
     	return response()->json($posts, 200);
     }
 
