@@ -39,7 +39,7 @@ class PostsController extends Controller
                 'title' => $posts->title,
                 'author' => $posts->author,
                 'content' => $posts->content,
-                'tags' => $posts->tags,
+                'tags' => $tags,
                 'id' => $posts->id
             ], 201);
     	} else {
