@@ -45,4 +45,47 @@ class PostsController extends Controller
             ], 400);
     	}
     }
+
+    public function update(Request $request, $post_id)
+    {
+    	$post = Posts::find($post_id);
+
+    	if ($post) {
+    		$post->title = $request->input('title');
+    		$post->author = $request->input('author');
+    		$post->content = $request->input('content');
+    		$post->tags = $request->input('tags');
+    		$post->save();
+
+    		return response()->json([
+                'data' => [
+                    'type' => 'posts',
+                    'message' => 'Update Success',
+                    'id' => $post->id,
+                    'attributes' => $post
+                ]
+            ], 201);
+    	} else {
+    		return response()->json([
+                'type' => 'posts',
+                'message' => 'Not Found'
+            ], 404);
+    	}
+    }
+
+    public function delete($post_id)
+    {
+        $post = Posts::find($post_id);
+
+        if ($post) {
+            $post->delete();
+
+            return response()->json([], 204);
+        } else {
+            return response()->json([
+                'type' => 'posts',
+                'message' => 'Not Found'
+            ], 404);
+        }
+    }
 }
