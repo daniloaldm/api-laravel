@@ -102,4 +102,16 @@ class PostsController extends Controller
             ], 404);
         }
     }
+
+    public function find($id){
+        $post = Posts::with('tags')->find($id);
+    	if ($id) {
+            return response()->json($post, 200);
+    	} else {
+    		return response()->json([
+                'type' => 'posts',
+                'message' => 'Fail'
+            ], 404);
+    	}
+    }
 }
