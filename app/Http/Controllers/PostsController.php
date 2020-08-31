@@ -6,15 +6,24 @@ use Illuminate\Http\Request;
 use App\Models\Posts;
 use App\Models\Tags;
 use App\Http\Controllers;
+use eloquentFilter\QueryFilter\ModelFilters\ModelFilters;
 
 class PostsController extends Controller
 {
-    public function show()
+    /**
+     * @param \eloquentFilter\QueryFilter\ModelFilters\ModelFilters $modelFilters
+     */
+    public function show(ModelFilters $modelFilters)
     {
-        $posts = Posts::all()->map(function ($postTag) {
-            $postTag['tags'] = $postTag->tags()->get()->pluck('tag')->all();
-            return $postTag;
-         })->all();
+
+        if (!empty($modelFilters->filters())) {
+            $posts = Tags::filter($modelFilters)->with('tags')->orderByDesc('id')->get();
+        } else {
+            $posts = Posts::all()->map(function ($postTag) {
+                $postTag['tags'] = $postTag->tags()->get()->pluck('tag')->all();
+                return $postTag;
+             })->all();
+        }
     	return response()->json($posts, 200);
     }
 

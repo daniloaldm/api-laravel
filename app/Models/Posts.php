@@ -2,10 +2,16 @@
 
 namespace App\Models;
 
+use eloquentFilter\QueryFilter\ModelFilters\Filterable;
 use Illuminate\Database\Eloquent\Model;
 
 class Posts extends Model
 {
+
+    use Filterable;
+
+    private static $whiteListFilter = ['*'];
+
     public $timestamps = false;
     /**
      * The attributes that are mass assignable.
