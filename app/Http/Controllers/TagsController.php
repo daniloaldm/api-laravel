@@ -29,4 +29,25 @@ class TagsController extends Controller
             ], 400);
         }
     }
+    public function updateTag($post_id, $tag){
+        foreach ($tag as $key => $value) {
+            $data = array(
+                'tag' => $value,
+                'post_id' => $post_id
+            );
+
+            $tags = Tags::create($data);
+        }
+
+        if ($tags) {
+            return response()->json([
+                    $tags->id,
+            ], 201);
+        } else {
+            return response()->json([
+                'type' => 'tags',
+                'message' => 'Fail'
+            ], 400);
+        }
+    }
 }

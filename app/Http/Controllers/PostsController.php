@@ -62,12 +62,13 @@ class PostsController extends Controller
     public function update(Request $request, $post_id)
     {
     	$post = Posts::find($post_id);
-
+        $tag = Tags::where('post_id', $post_id)->delete();
     	if ($post) {
     		$post->title = $request->input('title');
     		$post->author = $request->input('author');
     		$post->content = $request->input('content');
-    		$post->tags = $request->input('tags');
+            // $post->tags = $request->input('tags');
+            app('App\Http\Controllers\TagsController')->updateTag($post_id, $request->input('tags'));
     		$post->save();
 
     		return response()->json([
