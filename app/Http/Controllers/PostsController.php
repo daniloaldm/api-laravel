@@ -68,7 +68,7 @@ class PostsController extends Controller
     		$post->author = $request->input('author');
     		$post->content = $request->input('content');
             $tags = $request->input('tags');
-            app('App\Http\Controllers\TagsController')->updateTag($post_id, $tags);
+            app('App\Http\Controllers\TagsController')->registerTag($post_id, $tags);
     		$post->save();
 
     		return response()->json([
