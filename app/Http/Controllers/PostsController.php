@@ -19,6 +19,48 @@ class PostsController extends Controller
         $this->postsService = $postsService;
     }
 
+    /**
+     * @OA\Get(
+     ** path="/api/v1/posts/",
+     *   tags={"List"},
+     *   summary="List posts",
+     *   operationId="listposts",
+     *
+     *   @OA\Response(
+     *      response=200,
+     *       description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   )
+     *)
+     **/
+
+    /**
+     * @OA\Get(
+     ** path="/api/v1/posts",
+     *   tags={"List Tags"},
+     *   summary="List Tags",
+     *   operationId="listtag",
+     *
+     *  @OA\Parameter(
+     *      name="tag",
+     *      in="query",
+     *      required=false,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     * 
+     *   @OA\Response(
+     *      response=200,
+     *       description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   )
+     *)
+     **/
     public function show(ModelFilters $modelFilters)
     {
         try {
@@ -28,6 +70,51 @@ class PostsController extends Controller
         }
     }
 
+    /**
+     * @OA\Post(
+     ** path="/api/v1/posts",
+     *   tags={"Register Posts"},
+     *   summary="Register",
+     *   operationId="register",
+     *
+     *  @OA\Parameter(
+     *      name="title",
+     *      in="query",
+     *      required=false,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *  @OA\Parameter(
+     *      name="author",
+     *      in="query",
+     *      required=false,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *   @OA\Parameter(
+     *       name="content",
+     *      in="query",
+     *      required=false,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=201,
+     *       description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=400,
+     *      description="Bad Request"
+     *   )
+     * 
+     *)
+     **/
     public function register(Request $request)
     {
         try {
@@ -37,6 +124,59 @@ class PostsController extends Controller
         }
     }
 
+    /**
+     * @OA\Put(
+     ** path="/api/v1/posts/{id}",
+     *   tags={"Update Posts"},
+     *   summary="Update",
+     *   operationId="update",
+     * 
+     *  @OA\Parameter(
+     *      name="id",
+     *      in="path",
+     *      required=false,
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     *   ),
+     *  @OA\Parameter(
+     *      name="title",
+     *      in="query",
+     *      required=false,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *  @OA\Parameter(
+     *      name="author",
+     *      in="query",
+     *      required=false,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *   @OA\Parameter(
+     *       name="content",
+     *      in="query",
+     *      required=false,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=201,
+     *       description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=400,
+     *      description="Bad Request"
+     *   )
+     * 
+     *)
+     **/
     public function update(Request $request, $post_id)
     {
         try {
@@ -46,6 +186,35 @@ class PostsController extends Controller
         }
     }
 
+    /**
+     * @OA\Delete(
+     ** path="/api/v1/posts/{id}",
+     *   tags={"Delete Post"},
+     *   summary="Delete Post",
+     *   operationId="deletepost",
+     *
+     *  @OA\Parameter(
+     *      name="id",
+     *      in="path",
+     *      required=false,
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     *   ),
+     * 
+     *   @OA\Response(
+     *      response=204,
+     *       description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="Bad Request"
+     *   )
+     *)
+     **/
     public function delete($post_id)
     {
         try {
@@ -55,6 +224,35 @@ class PostsController extends Controller
         }
     }
 
+    /**
+     * @OA\Get(
+     ** path="/api/v1/posts/{id}",
+     *   tags={"Find Post ID"},
+     *   summary="Find Post ID",
+     *   operationId="findpostid",
+     *
+     *  @OA\Parameter(
+     *      name="id",
+     *      in="path",
+     *      required=false,
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     *   ),
+     * 
+     *   @OA\Response(
+     *      response=200,
+     *       description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="Bad Request"
+     *   )
+     *)
+     **/
     public function find($id){
         try {
             return $this->postsService->find($id);
