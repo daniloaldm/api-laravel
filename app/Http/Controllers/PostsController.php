@@ -67,17 +67,16 @@ class PostsController extends Controller
     		$post->title = $request->input('title');
     		$post->author = $request->input('author');
     		$post->content = $request->input('content');
-            // $post->tags = $request->input('tags');
-            app('App\Http\Controllers\TagsController')->updateTag($post_id, $request->input('tags'));
+            $tags = $request->input('tags');
+            app('App\Http\Controllers\TagsController')->updateTag($post_id, $tags);
     		$post->save();
 
     		return response()->json([
-                'data' => [
-                    'type' => 'posts',
-                    'message' => 'Update Success',
-                    'id' => $post->id,
-                    'attributes' => $post
-                ]
+                'title' => $post->title,
+                'author' => $post->author,
+                'content' => $post->content,
+                'tags' => $tags,
+                'id' => $post->id
             ], 201);
     	} else {
     		return response()->json([
