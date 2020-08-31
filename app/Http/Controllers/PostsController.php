@@ -17,14 +17,15 @@ class PostsController extends Controller
     {
 
         if (!empty($modelFilters->filters())) {
-            $posts = Posts::filter($modelFilters)->with('tags')->orderByDesc('id')->get();
+            $posts = Tags::filter($modelFilters)->with('tags')->orderByDesc('id')->get();
+            return response()->json($posts, 200);
         } else {
             $posts = Posts::all()->map(function ($postTag) {
                 $postTag['tags'] = $postTag->tags()->get()->pluck('tag')->all();
                 return $postTag;
              })->all();
+             return response()->json($posts, 200);
         }
-    	return response()->json($posts, 200);
     }
 
     public function register(Request $request)

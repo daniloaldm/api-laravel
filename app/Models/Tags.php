@@ -2,9 +2,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use eloquentFilter\QueryFilter\ModelFilters\Filterable;
 
 class Tags extends Model
 {
+
+    use Filterable;
+
+    private static $whiteListFilter = ['*'];
+
     public $timestamps = false;
 	/**
      * The attributes that are mass assignable.
@@ -20,6 +26,11 @@ class Tags extends Model
      *
      * @var array
      */
-    protected $hidden = ['id', 'post_id'];
+    protected $hidden = ['tags'];
     
+    public function tags()
+    {
+        return $this->hasMany('App\Models\Tags', 'post_id', 'id');
+    }
+
 }
