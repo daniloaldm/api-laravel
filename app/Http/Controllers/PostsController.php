@@ -17,7 +17,7 @@ class PostsController extends Controller
     {
 
         if (!empty($modelFilters->filters())) {
-            $posts = Tags::filter($modelFilters)->with('tags')->orderByDesc('id')->get();
+            $posts = Posts::filter($modelFilters)->with('tags')->orderByDesc('id')->get();
         } else {
             $posts = Posts::all()->map(function ($postTag) {
                 $postTag['tags'] = $postTag->tags()->get()->pluck('tag')->all();
