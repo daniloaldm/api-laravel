@@ -82,7 +82,7 @@ Prontinho :heart:
 
 ### Para testar a API com o Insomnia:
 <br>
-<a href="https://insomnia.rest/run/?label=Medicar%20API&uri=https%3A%2F%2Fgithub.com%2Fdaniloaldm%2Fmedicar%2Fblob%2Fmaster%2FInsomnia.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>
+<a href="https://insomnia.rest/run/?label=API%20CMS%20Laravel&uri=https%3A%2F%2Fgithub.com%2Fdaniloaldm%2Fapi-laravel%2Fblob%2Fmaster%2Fapi_laravel_cms.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>
 
 ### Executando testes
 
