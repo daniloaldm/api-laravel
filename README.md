@@ -6,6 +6,7 @@
 Construir uma API e banco de dados para a aplicação CMS (Content Management System). A aplicação é um simples repositório para gerenciar ferramentas com seus respectivos nomes, links, descrições e tags. Foram realizados:
 
 ● **Conteinerização da aplicação (Docker)**
+
 ● **Deploy no Heroku**
 
 Dentre outros detalhes que se pode perceber analisando o código
