@@ -18,6 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// http://localhost/api/documentation
 Route::prefix('/v1')->group(function () {
     Route::get('posts', 'PostsController@show');
     Route::get('posts/{id}', 'PostsController@find');
