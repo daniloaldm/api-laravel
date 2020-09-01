@@ -71,7 +71,7 @@ para acessar o container do laravel:
 > docker-compose exec app composer install
 > docker-compose exec app php artisan key:generate
 
-OBS: Se for de sua preferência você pode também <a href="#container-do-laravel">acessar o serviço</a> do laravel e executar:
+OBS: Se for de sua preferência você pode também acessar o serviço do laravel (explicado no ponto 4) e executar:
 > app composer install
 
 Prontinho :heart:
