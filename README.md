@@ -80,6 +80,10 @@ OBS: Se for de sua preferência você pode também acessar o serviço do laravel
 
 Prontinho :heart:
 
+### Para testar a API com o Insomnia:
+<br>
+<a href="https://insomnia.rest/run/?label=Medicar%20API&uri=https%3A%2F%2Fgithub.com%2Fdaniloaldm%2Fmedicar%2Fblob%2Fmaster%2FInsomnia.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>
+
 ### Executando testes
 
 Acesse o diretório do Docker e execute:
