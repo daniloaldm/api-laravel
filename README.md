@@ -73,10 +73,14 @@ para acessar o container do laravel:
 
 > docker-compose exec app php artisan key:generate
 
+> docker-compose exec app php artisan migrate
+
 OBS: Se for de sua preferência você pode também acessar o serviço do laravel (explicado no ponto 4) e executar:
 > app composer install
 
 > php artisan key:generate
+
+> php artisan migrate
 
 Prontinho :heart:
 
